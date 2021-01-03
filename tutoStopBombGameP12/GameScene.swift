@@ -11,8 +11,7 @@ class GameScene: SKScene {
     // MARK: - INTERNAL
 
     override func didMove(to view: SKView) {
-        addChild(bombNode)
-        bombNode.delegate = self
+        setupDependencies()
         bombNode.startTimer(timeBeforeExplosion: startingTime, invisibilityTime: invisibilityTime)
     }
 
@@ -30,6 +29,7 @@ class GameScene: SKScene {
     // MARK: Properties
 
     private let bombNode = BombNode()
+    private let appreciationManager = AppreciationManager()
     private let startingTime = 1000
 
     private var invisibilityTime: Int {
@@ -40,23 +40,27 @@ class GameScene: SKScene {
 
     // MARK: Methods
 
-    ///Restarts the bomb with a delay of 3 sec
-    private func restart() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [self] in
-            bombNode.startTimer(timeBeforeExplosion: startingTime, invisibilityTime: invisibilityTime)
-        }
+    ///Adds the dependencies as children and sets their delegate if needed
+    private func setupDependencies() {
+        addChild(bombNode)
+        addChild(appreciationManager)
+        bombNode.delegate = self
     }
 }
 
 
 extension GameScene: BombNodeDelegate {
-    func didExplode() {
-        print("YOU LOOSE")
-        restart()
-    }
-
-    func didStopBombTimerNode() {
-        print("GREAT")
-        restart()
+    func shouldRestartBomb() {
+        appreciationManager.displayAppreciation(
+            presentingSceneSize: scene?.size ?? CGSize(width: 2000, height: 2000),
+            startingTime: startingTime,
+            stopTime: bombNode.currentTime,
+            completion: { [self] in
+                bombNode.startTimer(
+                    timeBeforeExplosion: startingTime,
+                    invisibilityTime: invisibilityTime
+                )
+            }
+        )
     }
 }

@@ -8,8 +8,7 @@
 import SpriteKit
 
 protocol BombNodeDelegate: class {
-    func didExplode()
-    func didStopBombTimerNode()
+    func shouldRestartBomb()
 }
 
 class BombNode: SKSpriteNode {
@@ -65,7 +64,7 @@ class BombNode: SKSpriteNode {
         isStopped = true
         color = .orange
         revealTimeLabelIfNeeded()
-        delegate?.didStopBombTimerNode()
+        delegate?.shouldRestartBomb()
     }
 
 
@@ -137,7 +136,7 @@ class BombNode: SKSpriteNode {
         color = .blue
         isStopped = true
         revealTimeLabelIfNeeded()
-        delegate?.didExplode()
+        delegate?.shouldRestartBomb()
     }
 
     ///Runs the fadeOut() SKAction on the label

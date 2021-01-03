@@ -14,6 +14,7 @@
 		AC0A226225A0F77C0016A28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0A226025A0F77C0016A28A /* Main.storyboard */; };
 		AC0A226425A0F77E0016A28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0A226325A0F77E0016A28A /* Assets.xcassets */; };
 		AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A226D25A0F7B50016A28A /* BombNode.swift */; };
+		AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A227325A21C290016A28A /* AppreciationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AC0A226325A0F77E0016A28A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC0A226525A0F77E0016A28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC0A226D25A0F7B50016A28A /* BombNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombNode.swift; sourceTree = "<group>"; };
+		AC0A227325A21C290016A28A /* AppreciationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppreciationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				AC0A225C25A0F77C0016A28A /* GameScene.swift */,
 				AC0A226D25A0F7B50016A28A /* BombNode.swift */,
 				AC0A225E25A0F77C0016A28A /* GameViewController.swift */,
+				AC0A227325A21C290016A28A /* AppreciationManager.swift */,
 			);
 			path = tutoStopBombGameP12;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			files = (
 				AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */,
 				AC0A225F25A0F77C0016A28A /* GameViewController.swift in Sources */,
+				AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */,
 				AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */,
 				AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */,
 			);
