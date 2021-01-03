@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A225625A0F77C0016A28A /* AppDelegate.swift */; };
 		AC0A225925A0F77C0016A28A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AC0A225825A0F77C0016A28A /* GameScene.sks */; };
-		AC0A225B25A0F77C0016A28A /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = AC0A225A25A0F77C0016A28A /* Actions.sks */; };
 		AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A225C25A0F77C0016A28A /* GameScene.swift */; };
 		AC0A225F25A0F77C0016A28A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A225E25A0F77C0016A28A /* GameViewController.swift */; };
 		AC0A226225A0F77C0016A28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0A226025A0F77C0016A28A /* Main.storyboard */; };
 		AC0A226425A0F77E0016A28A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0A226325A0F77E0016A28A /* Assets.xcassets */; };
+		AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A226D25A0F7B50016A28A /* BombNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC0A225325A0F77C0016A28A /* tutoStopBombGameP12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tutoStopBombGameP12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0A225625A0F77C0016A28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC0A225825A0F77C0016A28A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		AC0A225A25A0F77C0016A28A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		AC0A225C25A0F77C0016A28A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AC0A225E25A0F77C0016A28A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AC0A226125A0F77C0016A28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC0A226325A0F77E0016A28A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC0A226525A0F77E0016A28A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC0A226D25A0F7B50016A28A /* BombNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +58,24 @@
 		AC0A225525A0F77C0016A28A /* tutoStopBombGameP12 */ = {
 			isa = PBXGroup;
 			children = (
-				AC0A225625A0F77C0016A28A /* AppDelegate.swift */,
+				AC0A227025A215ED0016A28A /* SupportingFiles */,
 				AC0A225825A0F77C0016A28A /* GameScene.sks */,
-				AC0A225A25A0F77C0016A28A /* Actions.sks */,
 				AC0A225C25A0F77C0016A28A /* GameScene.swift */,
+				AC0A226D25A0F7B50016A28A /* BombNode.swift */,
 				AC0A225E25A0F77C0016A28A /* GameViewController.swift */,
-				AC0A226025A0F77C0016A28A /* Main.storyboard */,
-				AC0A226325A0F77E0016A28A /* Assets.xcassets */,
-				AC0A226525A0F77E0016A28A /* Info.plist */,
 			);
 			path = tutoStopBombGameP12;
+			sourceTree = "<group>";
+		};
+		AC0A227025A215ED0016A28A /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				AC0A225625A0F77C0016A28A /* AppDelegate.swift */,
+				AC0A226025A0F77C0016A28A /* Main.storyboard */,
+				AC0A226525A0F77E0016A28A /* Info.plist */,
+				AC0A226325A0F77E0016A28A /* Assets.xcassets */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +138,6 @@
 				AC0A226225A0F77C0016A28A /* Main.storyboard in Resources */,
 				AC0A225925A0F77C0016A28A /* GameScene.sks in Resources */,
 				AC0A226425A0F77E0016A28A /* Assets.xcassets in Resources */,
-				AC0A225B25A0F77C0016A28A /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +151,7 @@
 				AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */,
 				AC0A225F25A0F77C0016A28A /* GameViewController.swift in Sources */,
 				AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */,
+				AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +292,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y56L8SS28B;
-				INFOPLIST_FILE = tutoStopBombGameP12/Info.plist;
+				INFOPLIST_FILE = tutoStopBombGameP12/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,7 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y56L8SS28B;
-				INFOPLIST_FILE = tutoStopBombGameP12/Info.plist;
+				INFOPLIST_FILE = tutoStopBombGameP12/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
