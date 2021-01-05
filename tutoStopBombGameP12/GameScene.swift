@@ -18,7 +18,7 @@ class GameScene: SKScene {
 
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !bombNode.isStopped else { return }
+        guard !bombNode.isStopped, !isPaused else { return }
         bombNode.stopTimer()
     }
 
@@ -28,9 +28,11 @@ class GameScene: SKScene {
 
     // MARK: Properties
 
+    private let startingTime = 1000
     private let bombNode = BombNode()
     private let appreciationManager = AppreciationManager()
-    private let startingTime = 1000
+
+    private lazy var pauseButtonNode = PauseButtonNode(presentingScene: self)
 
     private var invisibilityTime: Int {
         startingTime * 50/100
@@ -44,6 +46,7 @@ class GameScene: SKScene {
     private func setupDependencies() {
         addChild(bombNode)
         addChild(appreciationManager)
+        addChild(pauseButtonNode)
         bombNode.delegate = self
     }
 }
