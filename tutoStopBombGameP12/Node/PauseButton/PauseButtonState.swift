@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ButtonState {
+enum PauseButtonState {
     case pause, play
 
     var imageName: String {

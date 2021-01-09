@@ -16,7 +16,10 @@
 		AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A226D25A0F7B50016A28A /* BombNode.swift */; };
 		AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A227325A21C290016A28A /* AppreciationManager.swift */; };
 		AC0A227925A280100016A28A /* PauseButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A227825A280100016A28A /* PauseButtonNode.swift */; };
-		ACDB5B0325A299F90006B135 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB5B0225A299F90006B135 /* ButtonState.swift */; };
+		AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */; };
+		AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885625A627910008D912 /* DifficultyButtonType.swift */; };
+		AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */; };
+		ACDB5B0325A299F90006B135 /* PauseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB5B0225A299F90006B135 /* PauseButtonState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +34,10 @@
 		AC0A226D25A0F7B50016A28A /* BombNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombNode.swift; sourceTree = "<group>"; };
 		AC0A227325A21C290016A28A /* AppreciationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppreciationManager.swift; sourceTree = "<group>"; };
 		AC0A227825A280100016A28A /* PauseButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonNode.swift; sourceTree = "<group>"; };
-		ACDB5B0225A299F90006B135 /* ButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
+		AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonNode.swift; sourceTree = "<group>"; };
+		AC1F885625A627910008D912 /* DifficultyButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonType.swift; sourceTree = "<group>"; };
+		AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonContainerNode.swift; sourceTree = "<group>"; };
+		ACDB5B0225A299F90006B135 /* PauseButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,13 +70,11 @@
 		AC0A225525A0F77C0016A28A /* tutoStopBombGameP12 */ = {
 			isa = PBXGroup;
 			children = (
-				AC0A227025A215ED0016A28A /* SupportingFiles */,
 				AC0A225825A0F77C0016A28A /* GameScene.sks */,
 				AC0A225C25A0F77C0016A28A /* GameScene.swift */,
-				AC0A226D25A0F7B50016A28A /* BombNode.swift */,
-				AC0A227325A21C290016A28A /* AppreciationManager.swift */,
-				AC0A227825A280100016A28A /* PauseButtonNode.swift */,
-				ACDB5B0225A299F90006B135 /* ButtonState.swift */,
+				AC1F885325A626FF0008D912 /* Node */,
+				AC1F885525A627190008D912 /* Manager */,
+				AC0A227025A215ED0016A28A /* SupportingFiles */,
 			);
 			path = tutoStopBombGameP12;
 			sourceTree = "<group>";
@@ -85,6 +89,43 @@
 				AC0A226325A0F77E0016A28A /* Assets.xcassets */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		AC1F885225A626E30008D912 /* DifficultyManager */ = {
+			isa = PBXGroup;
+			children = (
+				AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */,
+				AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */,
+				AC1F885625A627910008D912 /* DifficultyButtonType.swift */,
+			);
+			path = DifficultyManager;
+			sourceTree = "<group>";
+		};
+		AC1F885325A626FF0008D912 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				AC0A226D25A0F7B50016A28A /* BombNode.swift */,
+				AC1F885425A627050008D912 /* PauseButton */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		AC1F885425A627050008D912 /* PauseButton */ = {
+			isa = PBXGroup;
+			children = (
+				AC0A227825A280100016A28A /* PauseButtonNode.swift */,
+				ACDB5B0225A299F90006B135 /* PauseButtonState.swift */,
+			);
+			path = PauseButton;
+			sourceTree = "<group>";
+		};
+		AC1F885525A627190008D912 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AC1F885225A626E30008D912 /* DifficultyManager */,
+				AC0A227325A21C290016A28A /* AppreciationManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +200,13 @@
 			files = (
 				AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */,
 				AC0A225F25A0F77C0016A28A /* GameViewController.swift in Sources */,
-				ACDB5B0325A299F90006B135 /* ButtonState.swift in Sources */,
+				ACDB5B0325A299F90006B135 /* PauseButtonState.swift in Sources */,
 				AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */,
 				AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */,
 				AC0A227925A280100016A28A /* PauseButtonNode.swift in Sources */,
+				AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */,
+				AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */,
+				AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */,
 				AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

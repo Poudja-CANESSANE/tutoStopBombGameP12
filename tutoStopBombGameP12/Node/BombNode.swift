@@ -36,7 +36,7 @@ class BombNode: SKSpriteNode {
 
     weak var delegate: BombNodeDelegate?
 
-    lazy var currentTime: Int = timeBeforeExplosion {
+    lazy var currentTime: Double = timeBeforeExplosion {
         didSet {
             let formattedTime = formatTimeAsString()
             timeLabel.text = formattedTime
@@ -50,7 +50,7 @@ class BombNode: SKSpriteNode {
     // MARK: Methods - Internal
 
     ///Sets the BombTimerNode to the initial state then starts the timer to decrease from the given Int to 0 second with a precision of 1/100
-    func startTimer(timeBeforeExplosion: Int, invisibilityTime: Int) {
+    func startTimer(timeBeforeExplosion: Double, invisibilityTime: Double) {
         resetTimerIfNeeded()
         currentTime = timeBeforeExplosion
         self.timeBeforeExplosion = timeBeforeExplosion
@@ -76,8 +76,8 @@ class BombNode: SKSpriteNode {
     private let timerActionKey = "timer"
     private let precision: Double = 1/100
 
-    private var timeBeforeExplosion = 500
-    private var invisibilityTime = 300
+    private var timeBeforeExplosion: Double = 500
+    private var invisibilityTime: Double = 300
 
     private lazy var timeLabel: SKLabelNode = {
         let formattedTime = formatTimeAsString()
@@ -103,13 +103,13 @@ class BombNode: SKSpriteNode {
     }
 
     ///Runs the bombTickingAction and handleExplosion()
-    private func runTickingAction(timeBeforeExplosion: Int, invisibilityTime: Int) {
+    private func runTickingAction(timeBeforeExplosion: Double, invisibilityTime: Double) {
         let tickingAction: SKAction = .repeat(
             .sequence([
                 .run(decreaseCountdown),
                 .wait(forDuration: precision)
             ]),
-            count: timeBeforeExplosion
+            count: Int(timeBeforeExplosion)
         )
 
         let timerAction: SKAction = .sequence([
@@ -132,7 +132,7 @@ class BombNode: SKSpriteNode {
     }
 
     ///Changes the BombNode's color to blue then communicates that the bomb has exploded via the delegate pattern
-    private func handleExplosion(timeBeforeExplosion: Int, invisibilityTime: Int) {
+    private func handleExplosion(timeBeforeExplosion: Double, invisibilityTime: Double) {
         color = .blue
         isStopped = true
         revealTimeLabelIfNeeded()
@@ -146,7 +146,7 @@ class BombNode: SKSpriteNode {
 
     ///Shows timeLabel if needed
     private func revealTimeLabelIfNeeded() {
-        timeLabel.alpha = 1 
+        timeLabel.run(.fadeIn(withDuration: 0.3))
     }
 
     ///Returns time rounded to the hundredth

@@ -10,12 +10,12 @@ import SpriteKit
 class GameScene: SKScene {
     // MARK: - INTERNAL
 
+    // MARK: Methods
+
     override func didMove(to view: SKView) {
         setupDependencies()
         bombNode.startTimer(timeBeforeExplosion: startingTime, invisibilityTime: invisibilityTime)
     }
-
-
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard !bombNode.isStopped, !isPaused else { return }
@@ -28,14 +28,15 @@ class GameScene: SKScene {
 
     // MARK: Properties
 
-    private let startingTime = 1000
+    private let startingTime: Double = 1000
     private let bombNode = BombNode()
     private let appreciationManager = AppreciationManager()
 
+    private lazy var difficultyButtonContainerNode = DifficultyButtonContainerNode(presentingScene: self)
     private lazy var pauseButtonNode = PauseButtonNode(presentingScene: self)
 
-    private var invisibilityTime: Int {
-        startingTime * 50/100
+    private var invisibilityTime: Double {
+        startingTime * difficultyButtonContainerNode.selectedDifficulty.startingTimePercentage
     }
 
 
@@ -47,6 +48,7 @@ class GameScene: SKScene {
         addChild(bombNode)
         addChild(appreciationManager)
         addChild(pauseButtonNode)
+        addChild(difficultyButtonContainerNode)
         bombNode.delegate = self
     }
 }

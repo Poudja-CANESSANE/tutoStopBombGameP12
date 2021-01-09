@@ -16,7 +16,7 @@ class PauseButtonNode: SKSpriteNode {
         self.presentingScene = presentingScene
 
         super.init(
-            texture: SKTexture(imageNamed: ButtonState.pause.imageName),
+            texture: SKTexture(imageNamed: PauseButtonState.pause.imageName),
             color: .white,
             size: CGSize(width: 100, height: 100)
         )
@@ -57,7 +57,7 @@ class PauseButtonNode: SKSpriteNode {
         return darkNode
     }()
 
-    private var state: ButtonState = .pause {
+    private var state: PauseButtonState = .pause {
         didSet {
             texture = SKTexture(imageNamed: state.imageName)
         }

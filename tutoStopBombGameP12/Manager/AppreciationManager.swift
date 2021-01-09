@@ -15,8 +15,8 @@ class AppreciationManager: SKNode {
     ///Displays an appreciation according to the stop time
     func displayAppreciation(
         presentingSceneSize: CGSize,
-        startingTime: Int,
-        stopTime: Int,
+        startingTime: Double,
+        stopTime: Double,
         completion: @escaping () -> Void = {}
     ){
 
@@ -51,8 +51,8 @@ class AppreciationManager: SKNode {
     ///Returns an SKLableNode whose text correspond to the correct appreciation
     private func getLabelNode(
         presentingSceneSize: CGSize,
-        startingTime: Int,
-        stopTime: Int
+        startingTime: Double,
+        stopTime: Double
     ) -> SKLabelNode {
 
         let appreciation = getAppreciation(startingTime: startingTime, stopTime: stopTime)
@@ -68,7 +68,7 @@ class AppreciationManager: SKNode {
     }
 
     ///Returns a String corresponding to the stop time
-    private func getAppreciation(startingTime: Int, stopTime: Int) -> String {
+    private func getAppreciation(startingTime: Double, stopTime: Double) -> String {
         var appreciation = ""
 
         switch stopTime {
