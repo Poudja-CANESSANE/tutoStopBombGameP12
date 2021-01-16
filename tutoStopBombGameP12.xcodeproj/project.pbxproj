@@ -19,6 +19,7 @@
 		AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */; };
 		AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885625A627910008D912 /* DifficultyButtonType.swift */; };
 		AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */; };
+		ACCE7D4E25AA2BE00041D0EF /* CountdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7D4D25AA2BE00041D0EF /* CountdownNode.swift */; };
 		ACDB5B0325A299F90006B135 /* PauseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB5B0225A299F90006B135 /* PauseButtonState.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonNode.swift; sourceTree = "<group>"; };
 		AC1F885625A627910008D912 /* DifficultyButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonType.swift; sourceTree = "<group>"; };
 		AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonContainerNode.swift; sourceTree = "<group>"; };
+		ACCE7D4D25AA2BE00041D0EF /* CountdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownNode.swift; sourceTree = "<group>"; };
 		ACDB5B0225A299F90006B135 /* PauseButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 			children = (
 				AC0A227825A280100016A28A /* PauseButtonNode.swift */,
 				ACDB5B0225A299F90006B135 /* PauseButtonState.swift */,
+				ACCE7D4D25AA2BE00041D0EF /* CountdownNode.swift */,
 			);
 			path = PauseButton;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				AC0A227925A280100016A28A /* PauseButtonNode.swift in Sources */,
 				AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */,
 				AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */,
+				ACCE7D4E25AA2BE00041D0EF /* CountdownNode.swift in Sources */,
 				AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */,
 				AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */,
 			);

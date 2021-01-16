@@ -47,6 +47,7 @@ class DifficultyButtonNode: SKSpriteNode {
 
     // MARK: Methods
 
+    ///Adds a SKLAbelNode with the given String as child
     private func addLabel(title: String) {
         let label = SKLabelNode(text: title)
         label.fontName = "HelveticaNeue-Bold"

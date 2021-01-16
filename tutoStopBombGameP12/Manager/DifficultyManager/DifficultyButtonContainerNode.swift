@@ -31,7 +31,6 @@ class DifficultyButtonContainerNode: SKSpriteNode {
         )
 
         addDifficultyButtonNodes()
-        difficultyButtonNodes.forEach { if $0.type == .normal { $0.isSelected = true } }
         difficultyButtonNodes.first { $0.type == .normal }?.isSelected = true
         zPosition = 4
         isUserInteractionEnabled = true

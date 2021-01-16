@@ -47,7 +47,7 @@ class BombNode: SKSpriteNode {
 
 
 
-    // MARK: Methods - Internal
+    // MARK: Methods
 
     ///Sets the BombTimerNode to the initial state then starts the timer to decrease from the given Int to 0 second with a precision of 1/100
     func startTimer(timeBeforeExplosion: Double, invisibilityTime: Double) {
@@ -94,7 +94,7 @@ class BombNode: SKSpriteNode {
 
 
 
-    // MARK: Methods - Private
+    // MARK: Methods
 
     ///Shows timeLabel if needed, changes the color to red if needed and sets isStopped to false
     private func resetTimerIfNeeded() {

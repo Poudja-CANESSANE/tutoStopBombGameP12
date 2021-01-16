@@ -36,6 +36,7 @@ class PauseButtonNode: SKSpriteNode {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        guard !presentingScene.children.contains(where: { $0.name == countdownNodeName }) else { return }
         togglePause()
     }
 
@@ -63,20 +64,40 @@ class PauseButtonNode: SKSpriteNode {
         }
     }
 
+    private let countdownNodeName = "countdown"
+
 
 
     // MARK: Methods
 
     ///Pauses the presenting scene and darkened or not the screen according to PauseButtonNode's state
     private func togglePause() {
-        if state == .pause {
-            state = .play
-            presentingScene.addChild(darkNode)
-            presentingScene.isPaused = true
-        } else {
+        state == .pause ?
+            pauseGame() : resumeGame()
+    }
+
+    ///Changes the state to .play, darkened and pauses  the presenting scene
+    private func pauseGame() {
+        state = .play
+        presentingScene.addChild(darkNode)
+        presentingScene.isPaused = true
+    }
+
+    ///Adds a CountdownNode as the presenting scene's child then unpauses the presenting scene
+    private func resumeGame() {
+        alpha = 0.5
+
+        let countdownNode = CountdownNode { [self] in
             state = .pause
             darkNode.removeFromParent()
             presentingScene.isPaused = false
+            alpha = 1
         }
+
+
+        countdownNode.name = countdownNodeName
+        presentingScene.addChild(countdownNode)
+        countdownNode.startCountdown()
+
     }
 }
