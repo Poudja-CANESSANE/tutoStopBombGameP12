@@ -146,7 +146,7 @@ class BombNode: SKSpriteNode {
 
     ///Shows timeLabel if needed
     private func revealTimeLabelIfNeeded() {
-        timeLabel.run(.fadeIn(withDuration: 0.3))
+        timeLabel.run(.fadeIn(withDuration: 0.1))
     }
 
     ///Returns time rounded to the hundredth

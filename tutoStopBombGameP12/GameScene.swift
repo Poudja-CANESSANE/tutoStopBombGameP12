@@ -22,22 +22,50 @@ class GameScene: SKScene {
         bombNode.stopTimer()
     }
 
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        label.text = "Starting time: \(Int(slider.value))s"
+    }
+
 
 
     // MARK: - PRIVATE
 
     // MARK: Properties
 
-    private let startingTime: Double = 1000
     private let bombNode = BombNode()
     private let appreciationManager = AppreciationManager()
 
-    private lazy var difficultyButtonContainerNode = DifficultyButtonContainerNode(presentingScene: self)
-    private lazy var pauseButtonNode = PauseButtonNode(presentingScene: self)
+    private var startingTime: Double { Double(Int(slider.value) * 100) }
 
     private var invisibilityTime: Double {
         startingTime * difficultyButtonContainerNode.selectedDifficulty.startingTimePercentage
     }
+
+    private lazy var difficultyButtonContainerNode = DifficultyButtonContainerNode(presentingScene: self)
+    private lazy var pauseButtonNode = PauseButtonNode(presentingScene: self)
+
+    private lazy var slider: UISlider = {
+        let slider = UISlider(frame: CGRect(
+            origin: CGPoint(x: 28, y: view!.bounds.height * 0.92),
+            size: CGSize(width: 160, height: 30)
+        ))
+
+        slider.minimumValue = 5
+        slider.maximumValue = 20
+        slider.value = 10
+        return slider
+    }()
+
+    private lazy var label: SKLabelNode = {
+        let label = SKLabelNode(text: "Starting time: \(slider.value)s")
+        label.fontName = "HelveticaNeue-Bold"
+        label.fontSize = 50
+        label.horizontalAlignmentMode = .left
+        label.position = CGPoint(x: -size.width/2 + 12, y: -size.height/2 * 0.77)
+        label.zPosition = 3
+        return label
+    }()
 
 
 
@@ -49,6 +77,8 @@ class GameScene: SKScene {
         addChild(appreciationManager)
         addChild(pauseButtonNode)
         addChild(difficultyButtonContainerNode)
+        addChild(label)
+        view?.addSubview(slider)
         bombNode.delegate = self
     }
 }
