@@ -16,8 +16,8 @@ class DifficultyButtonNode: SKSpriteNode {
         self.type = type
         
         super.init(
-            texture: nil,
-            color: .blue,
+            texture: SKTexture(imageNamed: Image.button.name),
+            color: .clear,
             size: size
         )
 
@@ -38,9 +38,7 @@ class DifficultyButtonNode: SKSpriteNode {
     var type: DifficultyButtonType
 
     var isSelected: Bool = false {
-        didSet {
-            color = isSelected ? .orange : .blue
-        }
+        didSet { alpha = isSelected ? 0.7 : 1 }
     }
 
 
@@ -49,11 +47,10 @@ class DifficultyButtonNode: SKSpriteNode {
 
     ///Adds a SKLAbelNode with the given String as child
     private func addLabel(title: String) {
-        let label = SKLabelNode(text: title)
-        label.fontName = "HelveticaNeue-Bold"
-        label.fontSize = 35
-        label.verticalAlignmentMode = .center
+        let label = SKLabelNode.getCustomLabel(fontSize: 15, text: title)
         label.name = type.nodeName
+        label.fontColor = .white
+        label.position = CGPoint(x: 0, y: 2)
         addChild(label)
     }
 }

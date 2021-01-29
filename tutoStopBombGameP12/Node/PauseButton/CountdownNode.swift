@@ -10,7 +10,7 @@ import SpriteKit
 class CountdownNode: SKSpriteNode {
     // MARK: - INTERNAL
 
-    // MARK: Inits - Internal
+    // MARK: Inits
 
     init(completion: @escaping () -> Void) {
         self.completion = completion
@@ -21,7 +21,7 @@ class CountdownNode: SKSpriteNode {
             size: CGSize(width: 200, height: 200)
         )
 
-        zPosition = 4
+        zPosition = ZPosition.menu.number
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,18 +48,13 @@ class CountdownNode: SKSpriteNode {
 
     // MARK: - PRIVATE
 
-    // MARK: Properties - Private
+    // MARK: Properties
 
-    private lazy var resumeLabel: SKLabelNode =  {
-        let label = SKLabelNode(text: "\(countdown + 1)")
-        label.fontName = "HelveticaNeue-Bold"
-        label.fontSize = 100
-        label.verticalAlignmentMode = .center
-        return label
-    }()
+    private lazy var resumeLabel: SKLabelNode =
+        .getCustomLabel(fontSize: 50, text: "\(countdown)")
 
-    private var countdown = 2 {
-        didSet { resumeLabel.text = "\(countdown + 1)" }
+    private var countdown = 3 {
+        didSet { resumeLabel.text = "\(countdown)" }
     }
 
     private var completion: () -> Void
@@ -67,21 +62,18 @@ class CountdownNode: SKSpriteNode {
 
 
 
-    // MARK: Methods - Private
+    // MARK: Methods
 
-    ///Decreases countdown of 1 till 0 is reached and calls endCountdown() if it is the case
+    ///Decreases countdown of 1 till 1 is reached and calls endCountdown() if it is the case
     @objc private func decreaseCountdown() {
-        if countdown == 0 { endCountdown() }
+        if countdown == 1 { endCountdown() }
         countdown -= 1
     }
 
-    ///Invalidates timer, removes resumeLabel and the current Countdown from their parent,
-    /// sets countdown to 3 and calls completion
+    ///Invalidates timer, removes resumeLabel and the current Countdown from their parent and calls completion
     private func endCountdown() {
         timer.invalidate()
-        resumeLabel.removeFromParent()
         removeFromParent()
-        countdown = 3
         completion()
     }
 }

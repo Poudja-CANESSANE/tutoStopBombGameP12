@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC05B61725C3A9260044EEA3 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05B61625C3A9260044EEA3 /* Sound.swift */; };
+		AC05B61E25C4A79D0044EEA3 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05B61D25C4A79D0044EEA3 /* AudioManager.swift */; };
+		AC05B62425C4C9760044EEA3 /* ZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05B62325C4C9760044EEA3 /* ZPosition.swift */; };
 		AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A225625A0F77C0016A28A /* AppDelegate.swift */; };
 		AC0A225925A0F77C0016A28A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AC0A225825A0F77C0016A28A /* GameScene.sks */; };
 		AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A225C25A0F77C0016A28A /* GameScene.swift */; };
@@ -16,14 +19,23 @@
 		AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A226D25A0F7B50016A28A /* BombNode.swift */; };
 		AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A227325A21C290016A28A /* AppreciationManager.swift */; };
 		AC0A227925A280100016A28A /* PauseButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0A227825A280100016A28A /* PauseButtonNode.swift */; };
+		AC0D012425BDEE1200736FBD /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC0D012325BDEE1200736FBD /* ding.mp3 */; };
+		AC0D012B25C3904C00736FBD /* SKLabelNode+CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D012A25C3904C00736FBD /* SKLabelNode+CustomLabel.swift */; };
+		AC0D012E25C393CD00736FBD /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D012D25C393CD00736FBD /* Image.swift */; };
 		AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */; };
 		AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885625A627910008D912 /* DifficultyButtonType.swift */; };
 		AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */; };
+		AC91F77225BB1562003EB8EE /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC91F77025BB1562003EB8EE /* explosion.mp3 */; };
+		AC91F77325BB1562003EB8EE /* ticking.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC91F77125BB1562003EB8EE /* ticking.mp3 */; };
+		AC91F77725BDE7AB003EB8EE /* super-boom.regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC91F77525BDE427003EB8EE /* super-boom.regular.otf */; };
 		ACCE7D4E25AA2BE00041D0EF /* CountdownNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE7D4D25AA2BE00041D0EF /* CountdownNode.swift */; };
 		ACDB5B0325A299F90006B135 /* PauseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDB5B0225A299F90006B135 /* PauseButtonState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC05B61625C3A9260044EEA3 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		AC05B61D25C4A79D0044EEA3 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		AC05B62325C4C9760044EEA3 /* ZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZPosition.swift; sourceTree = "<group>"; };
 		AC0A225325A0F77C0016A28A /* tutoStopBombGameP12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tutoStopBombGameP12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0A225625A0F77C0016A28A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC0A225825A0F77C0016A28A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -35,9 +47,15 @@
 		AC0A226D25A0F7B50016A28A /* BombNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombNode.swift; sourceTree = "<group>"; };
 		AC0A227325A21C290016A28A /* AppreciationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppreciationManager.swift; sourceTree = "<group>"; };
 		AC0A227825A280100016A28A /* PauseButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonNode.swift; sourceTree = "<group>"; };
+		AC0D012325BDEE1200736FBD /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ding.mp3; sourceTree = "<group>"; };
+		AC0D012A25C3904C00736FBD /* SKLabelNode+CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+CustomLabel.swift"; sourceTree = "<group>"; };
+		AC0D012D25C393CD00736FBD /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonNode.swift; sourceTree = "<group>"; };
 		AC1F885625A627910008D912 /* DifficultyButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonType.swift; sourceTree = "<group>"; };
 		AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtonContainerNode.swift; sourceTree = "<group>"; };
+		AC91F77025BB1562003EB8EE /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
+		AC91F77125BB1562003EB8EE /* ticking.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ticking.mp3; sourceTree = "<group>"; };
+		AC91F77525BDE427003EB8EE /* super-boom.regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "super-boom.regular.otf"; sourceTree = "<group>"; };
 		ACCE7D4D25AA2BE00041D0EF /* CountdownNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownNode.swift; sourceTree = "<group>"; };
 		ACDB5B0225A299F90006B135 /* PauseButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseButtonState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +71,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC05B61C25C4A7600044EEA3 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				AC0D012D25C393CD00736FBD /* Image.swift */,
+				AC05B61625C3A9260044EEA3 /* Sound.swift */,
+				AC05B62325C4C9760044EEA3 /* ZPosition.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		AC0A224A25A0F77C0016A28A = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +104,7 @@
 				AC0A225C25A0F77C0016A28A /* GameScene.swift */,
 				AC1F885325A626FF0008D912 /* Node */,
 				AC1F885525A627190008D912 /* Manager */,
+				AC05B61C25C4A7600044EEA3 /* Enum */,
 				AC0A227025A215ED0016A28A /* SupportingFiles */,
 			);
 			path = tutoStopBombGameP12;
@@ -85,6 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				AC0A225E25A0F77C0016A28A /* GameViewController.swift */,
+				AC0D012825C34CC200736FBD /* Sound */,
+				AC91F77525BDE427003EB8EE /* super-boom.regular.otf */,
+				AC0D012A25C3904C00736FBD /* SKLabelNode+CustomLabel.swift */,
 				AC0A225625A0F77C0016A28A /* AppDelegate.swift */,
 				AC0A226025A0F77C0016A28A /* Main.storyboard */,
 				AC0A226525A0F77E0016A28A /* Info.plist */,
@@ -93,20 +125,31 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		AC1F885225A626E30008D912 /* DifficultyManager */ = {
+		AC0D012825C34CC200736FBD /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				AC91F77025BB1562003EB8EE /* explosion.mp3 */,
+				AC91F77125BB1562003EB8EE /* ticking.mp3 */,
+				AC0D012325BDEE1200736FBD /* ding.mp3 */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		AC1F885225A626E30008D912 /* DifficultyButton */ = {
 			isa = PBXGroup;
 			children = (
 				AC1F885D25A632930008D912 /* DifficultyButtonContainerNode.swift */,
 				AC1F884E25A617AD0008D912 /* DifficultyButtonNode.swift */,
 				AC1F885625A627910008D912 /* DifficultyButtonType.swift */,
 			);
-			path = DifficultyManager;
+			path = DifficultyButton;
 			sourceTree = "<group>";
 		};
 		AC1F885325A626FF0008D912 /* Node */ = {
 			isa = PBXGroup;
 			children = (
 				AC0A226D25A0F7B50016A28A /* BombNode.swift */,
+				AC1F885225A626E30008D912 /* DifficultyButton */,
 				AC1F885425A627050008D912 /* PauseButton */,
 			);
 			path = Node;
@@ -125,8 +168,8 @@
 		AC1F885525A627190008D912 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				AC1F885225A626E30008D912 /* DifficultyManager */,
 				AC0A227325A21C290016A28A /* AppreciationManager.swift */,
+				AC05B61D25C4A79D0044EEA3 /* AudioManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -188,7 +231,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC91F77225BB1562003EB8EE /* explosion.mp3 in Resources */,
 				AC0A226225A0F77C0016A28A /* Main.storyboard in Resources */,
+				AC0D012425BDEE1200736FBD /* ding.mp3 in Resources */,
+				AC91F77725BDE7AB003EB8EE /* super-boom.regular.otf in Resources */,
+				AC91F77325BB1562003EB8EE /* ticking.mp3 in Resources */,
 				AC0A225925A0F77C0016A28A /* GameScene.sks in Resources */,
 				AC0A226425A0F77E0016A28A /* Assets.xcassets in Resources */,
 			);
@@ -204,14 +251,19 @@
 				AC0A225D25A0F77C0016A28A /* GameScene.swift in Sources */,
 				AC0A225F25A0F77C0016A28A /* GameViewController.swift in Sources */,
 				ACDB5B0325A299F90006B135 /* PauseButtonState.swift in Sources */,
+				AC05B61E25C4A79D0044EEA3 /* AudioManager.swift in Sources */,
 				AC0A227425A21C290016A28A /* AppreciationManager.swift in Sources */,
 				AC0A225725A0F77C0016A28A /* AppDelegate.swift in Sources */,
 				AC0A227925A280100016A28A /* PauseButtonNode.swift in Sources */,
+				AC0D012E25C393CD00736FBD /* Image.swift in Sources */,
+				AC05B61725C3A9260044EEA3 /* Sound.swift in Sources */,
 				AC1F885E25A632930008D912 /* DifficultyButtonContainerNode.swift in Sources */,
 				AC1F885725A627910008D912 /* DifficultyButtonType.swift in Sources */,
 				ACCE7D4E25AA2BE00041D0EF /* CountdownNode.swift in Sources */,
 				AC1F884F25A617AD0008D912 /* DifficultyButtonNode.swift in Sources */,
+				AC0D012B25C3904C00736FBD /* SKLabelNode+CustomLabel.swift in Sources */,
 				AC0A226E25A0F7B50016A28A /* BombNode.swift in Sources */,
+				AC05B62425C4C9760044EEA3 /* ZPosition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

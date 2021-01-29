@@ -57,10 +57,7 @@ class AppreciationManager: SKNode {
 
         let appreciation = getAppreciation(startingTime: startingTime, stopTime: stopTime)
 
-        let labelNode = SKLabelNode(text: appreciation)
-        labelNode.fontName = "HelveticaNeue-Bold"
-        labelNode.fontSize = 150
-        labelNode.zPosition = 3
+        let labelNode = SKLabelNode.getCustomLabel(fontSize: 50, text: appreciation)
         labelNode.position = CGPoint(x: 0, y: presentingSceneSize.height/2 * 0.30)
         labelNode.setScale(0)
 
@@ -70,13 +67,12 @@ class AppreciationManager: SKNode {
     ///Returns a String corresponding to the stop time
     private func getAppreciation(startingTime: Double, stopTime: Double) -> String {
         var appreciation = ""
-
         switch stopTime {
         case startingTime * 80/100...startingTime * 99/100: appreciation = "OK"
         case startingTime * 60/100...startingTime * 79/100: appreciation = "GOOD"
         case startingTime * 40/100...startingTime * 59/100: appreciation = "WELL DONE"
         case startingTime * 20/100...startingTime * 39/100: appreciation = "GREAT"
-        case startingTime * 01/100...startingTime * 19/100: appreciation = "SUPER"
+        case 1...startingTime * 19/100: appreciation = "SUPER"
         default: appreciation = "SO BAD"
         }
 

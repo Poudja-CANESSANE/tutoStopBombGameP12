@@ -18,9 +18,9 @@ class BombNode: SKSpriteNode {
 
     init() {
         super.init(
-            texture: nil,
-            color: .red,
-            size: CGSize(width: 200, height: 200)
+            texture: SKTexture(imageNamed: Image.bomb.name),
+            color: .clear,
+            size: CGSize(width: 512/7, height: 648/7)
         )
 
         addChild(timeLabel)
@@ -36,11 +36,8 @@ class BombNode: SKSpriteNode {
 
     weak var delegate: BombNodeDelegate?
 
-    lazy var currentTime: Double = timeBeforeExplosion {
-        didSet {
-            let formattedTime = formatTimeAsString()
-            timeLabel.text = formattedTime
-        }
+    lazy var currentTime: Double = 1000 {
+        didSet { timeLabel.text = formatTimeAsString() }
     }
 
     var isStopped = false
@@ -49,22 +46,21 @@ class BombNode: SKSpriteNode {
 
     // MARK: Methods
 
-    ///Sets the BombTimerNode to the initial state then starts the timer to decrease from the given Int to 0 second with a precision of 1/100
+    ///Sets the BombNode to the initial state then starts the timer to decrease from the given time to 0 second with a precision of 1/100
     func startTimer(timeBeforeExplosion: Double, invisibilityTime: Double) {
-        resetTimerIfNeeded()
+        texture = SKTexture(imageNamed: Image.bomb.name)
+        AudioManager.playSound(named: Sound.ticking.rawValue)
+        runScalingAnimation(to: self, firstScaleValue: 1.3, secondScaleValue: 1.0)
+        runScalingAnimation(to: timeLabel, firstScaleValue: 1.0, secondScaleValue: 1.3)
+        isStopped = false
         currentTime = timeBeforeExplosion
-        self.timeBeforeExplosion = timeBeforeExplosion
-        self.invisibilityTime = invisibilityTime
         runTickingAction(timeBeforeExplosion: timeBeforeExplosion, invisibilityTime: invisibilityTime)
     }
 
     ///Removes the SKAction associated to the timerActionKey so it stops the countdown
     func stopTimer() {
-        removeAction(forKey: timerActionKey)
-        isStopped = true
-        color = .orange
-        revealTimeLabelIfNeeded()
-        delegate?.shouldRestartBomb()
+        resetBomb()
+        run(playDingSoundAction)
     }
 
 
@@ -73,87 +69,102 @@ class BombNode: SKSpriteNode {
 
     // MARK: Properties
 
-    private let timerActionKey = "timer"
-    private let precision: Double = 1/100
+    private let playExplosionSoundAction: SKAction = .playSoundFileNamed(
+        Sound.explosion.rawValue,
+        waitForCompletion: true
+    )
 
-    private var timeBeforeExplosion: Double = 500
-    private var invisibilityTime: Double = 300
+    private let playDingSoundAction: SKAction = .playSoundFileNamed(
+        Sound.ding.rawValue,
+        waitForCompletion: true
+    )
+
+    private let precision: Double = 1/100
 
     private lazy var timeLabel: SKLabelNode = {
         let formattedTime = formatTimeAsString()
-        let label = SKLabelNode(text: formattedTime)
-        label.fontName = "HelveticaNeue-Bold"
-        label.fontSize = 50
-        label.verticalAlignmentMode = .center
+        let label = SKLabelNode.getCustomLabel(fontSize: 14, text: formattedTime)
+        label.position = CGPoint(x: -size.width/7, y: -size.height/5)
         return label
     }()
-
-    private var convertedTime: Double {
-        Double(currentTime) * precision
-    }
 
 
 
     // MARK: Methods
 
-    ///Shows timeLabel if needed, changes the color to red if needed and sets isStopped to false
-    private func resetTimerIfNeeded() {
-        if color != .red { color = .red }
-        isStopped = false
-    }
-
-    ///Runs the bombTickingAction and handleExplosion()
+    ///Starts the timer's countdown and handles the explosion when it is over
     private func runTickingAction(timeBeforeExplosion: Double, invisibilityTime: Double) {
         let tickingAction: SKAction = .repeat(
             .sequence([
-                .run(decreaseCountdown),
+                .run({ self.decreaseCountdown(invisibilityTime: invisibilityTime) }),
                 .wait(forDuration: precision)
             ]),
             count: Int(timeBeforeExplosion)
         )
 
-        let timerAction: SKAction = .sequence([
-            tickingAction,
-            .run({
-                self.handleExplosion(
-                    timeBeforeExplosion: timeBeforeExplosion,
-                    invisibilityTime: invisibilityTime
-                )
-            })
-        ])
-
-        run(timerAction, withKey: timerActionKey)
+        let timerAction: SKAction = .sequence([tickingAction, .run(handleExplosion)])
+        run(timerAction)
     }
 
     ///Decreases time of 1 till 0 is reached and calls hideLabel() if the invisibilityTime is reached
-    private func decreaseCountdown() {
-        if currentTime == invisibilityTime { hideTimeLabel() }
+    private func decreaseCountdown(invisibilityTime: Double) {
+        if currentTime == invisibilityTime { timeLabel.run(.fadeOut(withDuration: 0.3)) }
         currentTime -= 1
     }
 
-    ///Changes the BombNode's color to blue then communicates that the bomb has exploded via the delegate pattern
-    private func handleExplosion(timeBeforeExplosion: Double, invisibilityTime: Double) {
-        color = .blue
+    ///Resets the bomb, plays the explosion sound and animation
+    private func handleExplosion() {
+        resetBomb()
+        run(playExplosionSoundAction)
+        playExplosionAnimation()
+    }
+
+    ///Stops the ticking sound, removes all animation, sets isStopped to true,
+    /// reveal the time if needed then communicates that the bomb has exploded via the delegate
+    private func resetBomb() {
+        AudioManager.audioPlayer.stop()
+        removeAllActions()
+        timeLabel.removeAllActions()
         isStopped = true
-        revealTimeLabelIfNeeded()
+        if timeLabel.alpha < 1 { timeLabel.run(.fadeIn(withDuration: 0.1)) }
         delegate?.shouldRestartBomb()
     }
 
-    ///Runs the fadeOut() SKAction on the label
-    private func hideTimeLabel() {
-        timeLabel.run(.fadeOut(withDuration: 0.3))
+    ///Runs the explosion animation
+    private func playExplosionAnimation() {
+        var explosionTextures: [SKTexture] = []
+
+        for i in 1...13 {
+            let texture = SKTexture(imageNamed: "blast\(i)")
+            explosionTextures.append(texture)
+        }
+
+        let explosionAction: SKAction = .animate(with: explosionTextures, timePerFrame: 0.05)
+
+        run(explosionAction)
     }
 
-    ///Shows timeLabel if needed
-    private func revealTimeLabelIfNeeded() {
-        timeLabel.run(.fadeIn(withDuration: 0.1))
+    /// Runs a scaling animation to the given node
+    private func runScalingAnimation(
+        to node: SKNode,
+        firstScaleValue: CGFloat,
+        secondScaleValue: CGFloat
+    ) {
+
+        let scalingSequence: SKAction = .sequence([
+            .scale(to: firstScaleValue, duration: 0.5),
+            .scale(to: secondScaleValue, duration: 0.5)
+        ])
+
+        let scalingAnimation: SKAction = .repeatForever(scalingSequence)
+        node.run(scalingAnimation)
     }
 
     ///Returns time rounded to the hundredth
     private func formatTimeAsString() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.maximumFractionDigits = 2
-        guard let formattedTime = numberFormatter.string(from: convertedTime as NSNumber)
+        guard let formattedTime = numberFormatter.string(from: Double(currentTime) * precision as NSNumber)
         else { return "Error while formating time" }
         return formattedTime
     }

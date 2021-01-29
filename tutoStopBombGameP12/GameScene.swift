@@ -13,6 +13,9 @@ class GameScene: SKScene {
     // MARK: Methods
 
     override func didMove(to view: SKView) {
+        let background = SKSpriteNode(texture: SKTexture(imageNamed: Image.background.name), color: .clear, size: size)
+        background.zPosition = ZPosition.background.number
+        scene?.addChild(background)
         setupDependencies()
         bombNode.startTimer(timeBeforeExplosion: startingTime, invisibilityTime: invisibilityTime)
     }
@@ -39,7 +42,8 @@ class GameScene: SKScene {
     private var startingTime: Double { Double(Int(slider.value) * 100) }
 
     private var invisibilityTime: Double {
-        startingTime * difficultyButtonContainerNode.selectedDifficulty.startingTimePercentage
+        guard let selectedDifficulty = difficultyButtonContainerNode.difficultyButtonNodes.first(where: { $0.isSelected }) else { return 0.0 }
+        return startingTime * selectedDifficulty.type.startingTimePercentage
     }
 
     private lazy var difficultyButtonContainerNode = DifficultyButtonContainerNode(presentingScene: self)
@@ -47,23 +51,22 @@ class GameScene: SKScene {
 
     private lazy var slider: UISlider = {
         let slider = UISlider(frame: CGRect(
-            origin: CGPoint(x: 28, y: view!.bounds.height * 0.92),
+            origin: CGPoint(x: 8, y: view!.bounds.height * 0.92),
             size: CGSize(width: 160, height: 30)
         ))
 
         slider.minimumValue = 5
         slider.maximumValue = 20
         slider.value = 10
+        slider.tintColor = .brown
         return slider
     }()
 
     private lazy var label: SKLabelNode = {
-        let label = SKLabelNode(text: "Starting time: \(slider.value)s")
-        label.fontName = "HelveticaNeue-Bold"
-        label.fontSize = 50
+        let label = SKLabelNode.getCustomLabel(fontSize: 20, text: "Starting time: \(slider.value)s")
+        label.zPosition = ZPosition.menu.number
         label.horizontalAlignmentMode = .left
-        label.position = CGPoint(x: -size.width/2 + 12, y: -size.height/2 * 0.77)
-        label.zPosition = 3
+        label.position = CGPoint(x: -size.width/2 + 8, y: -size.height/2 * 0.77)
         return label
     }()
 
@@ -87,7 +90,7 @@ class GameScene: SKScene {
 extension GameScene: BombNodeDelegate {
     func shouldRestartBomb() {
         appreciationManager.displayAppreciation(
-            presentingSceneSize: scene?.size ?? CGSize(width: 2000, height: 2000),
+            presentingSceneSize: size,
             startingTime: startingTime,
             stopTime: bombNode.currentTime,
             completion: { [self] in

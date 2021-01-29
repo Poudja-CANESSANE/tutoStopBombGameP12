@@ -17,16 +17,16 @@ class PauseButtonNode: SKSpriteNode {
 
         super.init(
             texture: SKTexture(imageNamed: PauseButtonState.pause.imageName),
-            color: .white,
-            size: CGSize(width: 100, height: 100)
+            color: .clear,
+            size: CGSize(width: 40, height: 40)
         )
 
         position = CGPoint(
-            x: presentingScene.size.width/2 - size.width + 12,
-            y: presentingScene.size.height/2 - size.height + 12
+            x: presentingScene.size.width/2 - size.width/2 - 8,
+            y: presentingScene.size.height/2 - size.height/2 - 8
         )
 
-        zPosition = 4
+        zPosition = ZPosition.menu.number
         isUserInteractionEnabled = true
     }
 
@@ -54,14 +54,12 @@ class PauseButtonNode: SKSpriteNode {
         )
 
         darkNode.alpha = 0.7
-        darkNode.zPosition = 3
+        darkNode.zPosition = ZPosition.menu.number - 1
         return darkNode
     }()
 
     private var state: PauseButtonState = .pause {
-        didSet {
-            texture = SKTexture(imageNamed: state.imageName)
-        }
+        didSet { texture = SKTexture(imageNamed: state.imageName) }
     }
 
     private let countdownNodeName = "countdown"
@@ -76,8 +74,9 @@ class PauseButtonNode: SKSpriteNode {
             pauseGame() : resumeGame()
     }
 
-    ///Changes the state to .play, darkened and pauses  the presenting scene
+    ///Stops the ticking sound, changes the state to .play, darkened and pauses the presenting scene
     private func pauseGame() {
+        AudioManager.audioPlayer.stop()
         state = .play
         presentingScene.addChild(darkNode)
         presentingScene.isPaused = true
@@ -92,6 +91,7 @@ class PauseButtonNode: SKSpriteNode {
             darkNode.removeFromParent()
             presentingScene.isPaused = false
             alpha = 1
+            AudioManager.audioPlayer.play()
         }
 
 

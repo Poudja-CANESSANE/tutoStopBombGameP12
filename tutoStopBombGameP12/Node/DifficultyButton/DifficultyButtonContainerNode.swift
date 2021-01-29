@@ -19,20 +19,20 @@ class DifficultyButtonContainerNode: SKSpriteNode {
             texture: nil,
             color: .clear,
             size: CGSize(
-                width: 200,
+                width: 90,
                 height: DifficultyButtonType.allCases.count * singleButtonHeight +
                     (DifficultyButtonType.allCases.count - 1) * spacing
             )
         )
 
         position = CGPoint(
-            x: (-presentingScene.size.width/2) + size.width/2 + 12,
-            y: presentingScene.size.height/2 - size.height/2 - 12
+            x: (-presentingScene.size.width/2) + size.width/2 + 8,
+            y: presentingScene.size.height/2 - size.height/2 - 8
         )
 
         addDifficultyButtonNodes()
         difficultyButtonNodes.first { $0.type == .normal }?.isSelected = true
-        zPosition = 4
+        zPosition = ZPosition.menu.number
         isUserInteractionEnabled = true
     }
 
@@ -47,7 +47,7 @@ class DifficultyButtonContainerNode: SKSpriteNode {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         guard let touchedNodeName = getTouchedNodeNameFromTouches(touches, scene: presentingScene),
-              let touchedDiffficultyButton = difficultyButtonNodes.first(where: { $0.name == touchedNodeName} )
+              let touchedDiffficultyButton = difficultyButtonNodes.first(where: { $0.name == touchedNodeName } )
         else { return }
 
         deselectPreviousButton(touchedButton: touchedDiffficultyButton)
@@ -57,7 +57,7 @@ class DifficultyButtonContainerNode: SKSpriteNode {
 
     // MARK: Properties
 
-    var selectedDifficulty: DifficultyButtonType = .normal
+    var difficultyButtonNodes: [DifficultyButtonNode] = []
 
 
 
@@ -66,9 +66,8 @@ class DifficultyButtonContainerNode: SKSpriteNode {
     // MARK: Properties
 
     private let presentingScene: SKScene
-    private let singleButtonHeight = 60
-    private let spacing = 15
-    private var difficultyButtonNodes: [DifficultyButtonNode] = []
+    private let singleButtonHeight = 30
+    private let spacing = 7
 
 
 
@@ -106,7 +105,6 @@ class DifficultyButtonContainerNode: SKSpriteNode {
     private func deselectPreviousButton(touchedButton: DifficultyButtonNode) {
         difficultyButtonNodes.forEach { $0.isSelected = false }
         touchedButton.isSelected = true
-        selectedDifficulty = touchedButton.type
     }
 
     ///Returns the touched node's name 
