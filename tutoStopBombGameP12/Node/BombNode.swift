@@ -36,6 +36,8 @@ class BombNode: SKSpriteNode {
 
     weak var delegate: BombNodeDelegate?
 
+    var startingTime: Double = 1000
+
     lazy var currentTime: Double = 1000 {
         didSet { timeLabel.text = formatTimeAsString() }
     }
@@ -53,6 +55,7 @@ class BombNode: SKSpriteNode {
         runScalingAnimation(to: self, firstScaleValue: 1.3, secondScaleValue: 1.0)
         runScalingAnimation(to: timeLabel, firstScaleValue: 1.0, secondScaleValue: 1.3)
         isStopped = false
+        startingTime = timeBeforeExplosion
         currentTime = timeBeforeExplosion
         runTickingAction(timeBeforeExplosion: timeBeforeExplosion, invisibilityTime: invisibilityTime)
     }
@@ -82,8 +85,7 @@ class BombNode: SKSpriteNode {
     private let precision: Double = 1/100
 
     private lazy var timeLabel: SKLabelNode = {
-        let formattedTime = formatTimeAsString()
-        let label = SKLabelNode.getCustomLabel(fontSize: 14, text: formattedTime)
+        let label = SKLabelNode.getCustomLabel(fontSize: 14, text: formatTimeAsString())
         label.position = CGPoint(x: -size.width/7, y: -size.height/5)
         return label
     }()

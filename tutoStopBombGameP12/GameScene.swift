@@ -103,7 +103,7 @@ extension GameScene: BombNodeDelegate {
     func shouldRestartBomb() {
         appreciationManager.displayAppreciation(
             presentingSceneSize: size,
-            startingTime: startingTime,
+            startingTime: bombNode.startingTime,
             stopTime: bombNode.currentTime,
             completion: { [self] in
                 bombNode.startTimer(

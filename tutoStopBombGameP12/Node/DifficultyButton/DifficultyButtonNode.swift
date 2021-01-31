@@ -50,7 +50,7 @@ class DifficultyButtonNode: SKSpriteNode {
         let label = SKLabelNode.getCustomLabel(fontSize: 15, text: title)
         label.name = type.nodeName
         label.fontColor = .white
-        label.position = CGPoint(x: 0, y: 2)
+        label.position.y = 2
         addChild(label)
     }
 }
