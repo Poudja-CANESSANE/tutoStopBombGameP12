@@ -7,46 +7,30 @@
 
 import SpriteKit
 
-class DifficultyButtonContainerNode: SKSpriteNode {
+class DifficultyButtonContainerNode: SKNode {
     // MARK: - INTERNAL
 
-    // MARK: Inits
+    // MARK: Methods
 
-    init(presentingScene: SKScene) {
+    ///Adds a DifficultyButtonNode of each DifficultyButtonType at the correct position and selects the normal difficulty by default
+    func setup(presentingScene: SKScene) {
         self.presentingScene = presentingScene
-
-        super.init(
-            texture: nil,
-            color: .clear,
-            size: CGSize(
-                width: 90,
-                height: DifficultyButtonType.allCases.count * singleButtonHeight +
-                    (DifficultyButtonType.allCases.count - 1) * spacing
-            )
-        )
-
-        position = CGPoint(
-            x: (-presentingScene.size.width/2) + size.width/2 + 8,
-            y: presentingScene.size.height/2 - size.height/2 - 8
-        )
-
         addDifficultyButtonNodes()
         difficultyButtonNodes.first { $0.type == .normal }?.isSelected = true
         zPosition = ZPosition.menu.number
         isUserInteractionEnabled = true
+        let size = calculateAccumulatedFrame()
+
+        position = CGPoint(
+            x: -presentingScene.size.width/2 + size.width/2 + 8,
+            y: presentingScene.size.height/2 - size.height/2 - 8
+        )
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-
-
-    // MARK: Methods
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        guard let touchedNodeName = getTouchedNodeNameFromTouches(touches, scene: presentingScene),
+        guard let presentingScene = presentingScene,
+              let touchedNodeName = getTouchedNodeNameFromTouches(touches, scene: presentingScene),
               let touchedDiffficultyButton = difficultyButtonNodes.first(where: { $0.name == touchedNodeName } )
         else { return }
 
@@ -65,9 +49,8 @@ class DifficultyButtonContainerNode: SKSpriteNode {
 
     // MARK: Properties
 
-    private let presentingScene: SKScene
+    private var presentingScene: SKScene?
     private let singleButtonHeight = 30
-    private let spacing = 7
 
 
 
@@ -84,16 +67,16 @@ class DifficultyButtonContainerNode: SKSpriteNode {
     private func addSingleDifficultyButtonNode(type: DifficultyButtonType, index: Int) {
         let difficultyButtonNode = DifficultyButtonNode(
             type: type,
-            size: CGSize(width: Int(size.width), height: singleButtonHeight)
+            size: CGSize(width: 90, height: singleButtonHeight)
         )
 
-        let yPosition = getYPosition(spacing: spacing, index: index)
+        let yPosition = getYPosition(spacing: 7, index: index)
         difficultyButtonNode.position = CGPoint(x: 0, y: yPosition)
         difficultyButtonNodes.append(difficultyButtonNode)
         addChild(difficultyButtonNode)
     }
 
-    ///Returns the y value of the CharacterButtonItemNode's position according to the given spacing and index
+    ///Returns the y value of the DifficultyButtonItemNode's position according to the given spacing and index
     private func getYPosition(spacing: Int, index: Int) -> Double {
         let multiplier = Double(DifficultyButtonType.allCases.count) / 2.0 - 0.5
         let yShift = singleButtonHeight + spacing

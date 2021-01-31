@@ -13,7 +13,7 @@ enum ZPosition {
     var number: CGFloat {
         switch self {
         case .background: return -1
-        case .menu: return 2
+        case .menu: return 1
 
         }
     }

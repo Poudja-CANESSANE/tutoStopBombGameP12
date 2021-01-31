@@ -54,7 +54,6 @@ class PauseButtonNode: SKSpriteNode {
         )
 
         darkNode.alpha = 0.7
-        darkNode.zPosition = ZPosition.menu.number - 1
         return darkNode
     }()
 
@@ -85,19 +84,19 @@ class PauseButtonNode: SKSpriteNode {
     ///Adds a CountdownNode as the presenting scene's child then unpauses the presenting scene
     private func resumeGame() {
         alpha = 0.5
-
-        let countdownNode = CountdownNode { [self] in
-            state = .pause
-            darkNode.removeFromParent()
-            presentingScene.isPaused = false
-            alpha = 1
-            AudioManager.audioPlayer.play()
-        }
-
-
+        let countdownNode = CountdownNode()
         countdownNode.name = countdownNodeName
         presentingScene.addChild(countdownNode)
-        countdownNode.startCountdown()
 
+        countdownNode.startCountdown(completion: playGame)
+    }
+
+    ///Unpauses the presenting scene and resume de ticking sound
+    private func playGame() {
+        state = .pause
+        darkNode.removeFromParent()
+        presentingScene.isPaused = false
+        alpha = 1
+        AudioManager.audioPlayer.play()
     }
 }

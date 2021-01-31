@@ -13,9 +13,7 @@ class GameScene: SKScene {
     // MARK: Methods
 
     override func didMove(to view: SKView) {
-        let background = SKSpriteNode(texture: SKTexture(imageNamed: Image.background.name), color: .clear, size: size)
-        background.zPosition = ZPosition.background.number
-        scene?.addChild(background)
+        addBackground()
         setupDependencies()
         bombNode.startTimer(timeBeforeExplosion: startingTime, invisibilityTime: invisibilityTime)
     }
@@ -38,15 +36,16 @@ class GameScene: SKScene {
 
     private let bombNode = BombNode()
     private let appreciationManager = AppreciationManager()
+    private let difficultyButtonContainerNode = DifficultyButtonContainerNode()
 
     private var startingTime: Double { Double(Int(slider.value) * 100) }
 
     private var invisibilityTime: Double {
-        guard let selectedDifficulty = difficultyButtonContainerNode.difficultyButtonNodes.first(where: { $0.isSelected }) else { return 0.0 }
+        guard let selectedDifficulty = difficultyButtonContainerNode.difficultyButtonNodes
+                .first(where: { $0.isSelected }) else { return 0.0 }
         return startingTime * selectedDifficulty.type.startingTimePercentage
     }
 
-    private lazy var difficultyButtonContainerNode = DifficultyButtonContainerNode(presentingScene: self)
     private lazy var pauseButtonNode = PauseButtonNode(presentingScene: self)
 
     private lazy var slider: UISlider = {
@@ -74,12 +73,25 @@ class GameScene: SKScene {
 
     // MARK: Methods
 
+    ///Adds the background image as a child
+    private func addBackground () {
+        let background = SKSpriteNode(
+            texture: SKTexture(imageNamed: Image.background.name),
+            color: .clear,
+            size: size
+        )
+
+        background.zPosition = ZPosition.background.number
+        addChild(background)
+    }
+
     ///Adds the dependencies as children and sets their delegate if needed
     private func setupDependencies() {
         addChild(bombNode)
         addChild(appreciationManager)
         addChild(pauseButtonNode)
         addChild(difficultyButtonContainerNode)
+        difficultyButtonContainerNode.setup(presentingScene: self)
         addChild(label)
         view?.addSubview(slider)
         bombNode.delegate = self

@@ -7,34 +7,16 @@
 
 import SpriteKit
 
-class CountdownNode: SKSpriteNode {
+class CountdownNode: SKNode {
     // MARK: - INTERNAL
 
-    // MARK: Inits
-
-    init(completion: @escaping () -> Void) {
-        self.completion = completion
-        
-        super.init(
-            texture: nil,
-            color: .clear,
-            size: CGSize(width: 200, height: 200)
-        )
-
-        zPosition = ZPosition.menu.number
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-
-
-    // MARK: Methods - Internal
+    // MARK: Methods
 
     ///Adds resumeLabel as child then schedules timer with a TimeInterval of 1 and passes decreaseCountdown in the selector
-    func startCountdown() {
+    func startCountdown(completion: @escaping () -> Void) {
+        self.completion = completion
         addChild(resumeLabel)
+        
         timer = .scheduledTimer(
             timeInterval: 1,
             target: self,
@@ -50,14 +32,13 @@ class CountdownNode: SKSpriteNode {
 
     // MARK: Properties
 
-    private lazy var resumeLabel: SKLabelNode =
-        .getCustomLabel(fontSize: 50, text: "\(countdown)")
+    private lazy var resumeLabel: SKLabelNode = .getCustomLabel(fontSize: 50, text: "\(countdown)")
 
     private var countdown = 3 {
         didSet { resumeLabel.text = "\(countdown)" }
     }
 
-    private var completion: () -> Void
+    private var completion: () -> Void = {}
     private var timer = Timer()
 
 
