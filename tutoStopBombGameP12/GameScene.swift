@@ -50,7 +50,7 @@ class GameScene: SKScene {
 
     private lazy var slider: UISlider = {
         let slider = UISlider(frame: CGRect(
-            origin: CGPoint(x: 8, y: view!.bounds.height * 0.92),
+            origin: CGPoint(x: 8, y: view!.bounds.height * 0.93),
             size: CGSize(width: 160, height: 30)
         ))
 
@@ -58,11 +58,12 @@ class GameScene: SKScene {
         slider.maximumValue = 20
         slider.value = 10
         slider.tintColor = .brown
+        slider.maximumTrackTintColor = .darkGray
         return slider
     }()
 
     private lazy var label: SKLabelNode = {
-        let label = SKLabelNode.getCustomLabel(fontSize: 20, text: "Starting time: \(slider.value)s")
+        let label = SKLabelNode.getCustomLabel(fontSize: 20, text: "Starting time: \(Int(slider.value))s")
         label.zPosition = ZPosition.menu.number
         label.horizontalAlignmentMode = .left
         label.position = CGPoint(x: -size.width/2 + 8, y: -size.height/2 * 0.77)

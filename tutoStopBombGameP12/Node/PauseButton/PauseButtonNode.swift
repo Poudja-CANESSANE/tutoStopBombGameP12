@@ -87,7 +87,6 @@ class PauseButtonNode: SKSpriteNode {
         let countdownNode = CountdownNode()
         countdownNode.name = countdownNodeName
         presentingScene.addChild(countdownNode)
-
         countdownNode.startCountdown(completion: playGame)
     }
 
